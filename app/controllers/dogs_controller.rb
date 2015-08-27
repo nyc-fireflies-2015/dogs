@@ -3,26 +3,24 @@ get '/dogs' do
   erb :'dogs/index'
 end
 
-get '/dogs/name/:name' do
-  @dog = Dog.find_by(name: params[:name])
-  @dog.breed
+get '/dogs/new' do
+  erb :'dogs/new'
 end
 
-get '/dogs/new' do
-  @dog = Dog.new
-  erb :'dogs/new'
+post '/dogs' do
+  new_dog = Dog.create(params[:dog])
+  if request.xhr?
+    erb :'dogs/_dog', layout: false, locals: { dog: new_dog }
+  else
+    redirect "/dogs/#{new_dog.id}"
+  end
 end
 
 get '/dogs/:id' do
   @dog = Dog.find(params[:id])
-  @dog.name
+  erb :'dogs/show'
 end
 
-post '/dogs' do
-  dog = Dog.new(breed: params[:breed], name: params[:name])
-  if dog.save
-    redirect "/dogs/#{dog.id}"
-  else
-    "unsuccessful"
-  end
+get '/demo' do
+  erb :demo
 end
