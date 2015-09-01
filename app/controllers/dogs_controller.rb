@@ -24,3 +24,7 @@ end
 get '/demo' do
   erb :demo
 end
+patch '/dogs/:id' do
+  (dog = Dog.find(params[:id]).increment(:likes)).save
+  erb :'dogs/_dog', layout: false, locals: { dog: dog }
+end

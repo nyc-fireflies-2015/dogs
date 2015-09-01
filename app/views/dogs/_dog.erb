@@ -1,3 +1,4 @@
-<li style="border: solid 1px red; padding: 10px; margin-bottom: 15px">
-<a href="/dogs/<%= dog.id %>"><%= dog.name %>: <%= dog.breed %></a>
+<li class="dog-list-item" style="border: solid 1px red; padding: 10px; margin-bottom: 15px">
+  [<%= dog.likes %>] <a href="/dogs/<%= dog.id %>"><%= dog.name %>: <%= dog.breed %></a>
+  <input type="button" name="<%= dog.id %>"  value="Like!" />
 </li>
