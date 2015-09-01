@@ -24,6 +24,15 @@ end
 get '/demo' do
   erb :demo
 end
+
+get '/opt' do
+  j =  erb :'dogs/_dog', layout: false, locals: { dog: Dog.first }
+  {
+    status: true,
+    body: j
+  }.to_json
+end
+
 patch '/dogs/:id' do
   (dog = Dog.find(params[:id]).increment(:likes)).save
   erb :'dogs/_dog', layout: false, locals: { dog: dog }

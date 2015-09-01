@@ -17,6 +17,16 @@ $("#new-dog").on('submit', function(e) {
   });
 });
 
+$("#demo").on('click', function(e) {
+  e.preventDefault();
+  $.ajax("/opt")
+    .done(function(data) {
+      debugger
+      var obj = JSON.parse(data)
+      console.log(obj.status)
+    })
+})
+
 $(".like-dog").on('submit', function(e) {
   var clickTarget = $(e.target);
 
